@@ -10,8 +10,18 @@ const register = async(req,res)=> {
         return res.status(422).json({"msg":"O nome é obrigatório!"})
     }
 
+    //regex para o nome
+    if(!/^[a-zA-Z\s]+$/.test(name)){
+        return res.status(422).json({"msg":"O nome só pode conter letras e espaços em branco!"})
+    }
+
     if(!email){
         return res.status(422).json({"msg":"O email é obrigatório!"})
+    }
+
+    //regex para o email
+    if(!/^\S+@\S+\.\S+$/.test(email)){
+        return res.status(422).json({"msg":"O email está em um formato inválido!"})
     }
 
     if(!password){
