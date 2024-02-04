@@ -1,0 +1,51 @@
+{{#if msg}}
+<div class="toast align-items-center mx-auto" role="alert" aria-live="assertive" aria-atomic="true" id="meuToast">
+    <div class="d-flex">
+        <div class="toast-body">
+            {{msg}}
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>
+{{/if}}
+
+<div class="container overflow-hidden">
+    <form id="loginForm" action="/auth/login" method="POST">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp"
+                        required>
+                    <div id="emailHelp" class="form-text">Nós nunca compartilharemos seu email com ninguém</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" id="inputPassword" name="password" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <span>Não tem uma conta? <a href="register">Registrar-se</a></span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var myToastEl = document.getElementById('meuToast');
+        var myToast = new bootstrap.Toast(myToastEl);
+        myToast.show();
+    });
+</script>

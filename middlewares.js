@@ -2,11 +2,10 @@ const jwt = require('jsonwebtoken');
 
 
 const checkToken = (req, res, next) =>{
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(" ")[1]
+    token = req.cookies.access_token;
 
     if(!token) {
-        return res.status(401).json({"msg":"Acesso negado!"})
+        return res.redirect('/login')
     }
     
     try {
@@ -14,7 +13,7 @@ const checkToken = (req, res, next) =>{
         jwt.verify(token, secret)
         next();
     } catch (error) {
-        res.status(400).json({"msg":"Token inválido!"})
+        return res.redirect('/login')
     }
 }
 
